@@ -1,0 +1,97 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form method="post" class="form-horizontal" name="add_user_form" id="add_user_form"
+			action="<{url c=adminRole a=addUser}>">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-1">管理角色组</label>
+				<div class="col-sm-9">
+					<select class="width-80 chosen-select" name="groupId" data-placeholder="Choose a Country..."> <{foreach
+						from=$group item=g}>
+						<option value="<{$g.gid}>"><{$g.gname}></option> <{/foreach}>
+					</select>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 用户名 </label>
+				<div class="col-sm-9">
+					<input type="text" id="form-field-2" placeholder="you login name"
+						name="username" class="col-xs-10 col-sm-5" /> <span
+						class="help-inline col-xs-12 col-sm-7"> <span
+						class="middle">Inline help text</span>
+					</span>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 真实姓名 </label>
+				<div class="col-sm-9">
+					<input type="text" id="form-field-2" placeholder="" name="truename"
+						class="col-xs-10 col-sm-5" /> <span
+						class="help-inline col-xs-12 col-sm-7"> </span>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 密码 </label>
+				<div class="col-sm-9">
+					<input type="password" id="form-field-2" placeholder=" "
+						name="password" class="col-xs-10 col-sm-5" /> <span
+						class="help-inline col-xs-12 col-sm-7"> </span>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 邮箱 </label>
+				<div class="col-sm-9">
+					<input type="text" id="form-field-2" placeholder=" " name="email"
+						class="col-xs-10 col-sm-5" /> <span
+						class="help-inline col-xs-12 col-sm-7"> </span>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 手机号码 </label>
+				<div class="col-sm-9">
+					<input type="text" id="form-field-2" placeholder=" " name="phone"
+						class="col-xs-10 col-sm-5" /> <span
+						class="help-inline col-xs-12 col-sm-7"> </span>
+				</div>
+			</div>
+			<div class="space-4"></div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 状态 </label>
+				<div class="col-sm-9">
+
+					<label> <input name="status" type="radio" class="ace"
+						value="1" checked="checked" /> <span class="lbl">启用</span>
+					</label> <label> <input name="status" type="radio" class="ace"
+						value="0" /> <span class="lbl">禁用</span>
+					</label>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$(".chosen-select").chosen();
+$('.chosen-container').each(function() {
+	$(this).find('a:first-child').css('width', '210px');
+	$(this).find('.chosen-drop').css('width', '210px');
+	$(this).find('.chosen-search input').css('width', '200px');
+});
+</script>

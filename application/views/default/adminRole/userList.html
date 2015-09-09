@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h1> 管理员 <small> <i class="icon-double-angle-right"> &nbsp;</i> <{checkRight c=adminRole a=addUser}> <a data-title="添加管理员" data-url="<{url c=adminRole a=addUser}>" data-type="form" href="javascript:void(0)" class="open_dialog">创建管理员</a> <{/checkRight}> </small> </h1>
+</div>
+<!-- /.page-header -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-responsive">
+          <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>用户名</th>
+                <th>角色组</th>
+                <th>真实姓名</th>
+                <th>E-mail</th>
+                <th>最后登录时间</th>
+                <th>最后登录IP</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            <{foreach from=$list item=l}>
+            <tr>
+              <td><{$l.username}></td>
+              <td><{$group[$l.groupId].gname}></td>
+              <td><{$l.truename}></td>
+              <td><{$l.email}></td>
+              <td><{$l.lastTime|date_format:"%Y-%m-%d&nbsp;%H:%M:%S"}></td>
+              <td><{$l.lastIp}></td>
+              <td><{if $l.status == 1}><span class="green">正常</span><{else}><span class="red">禁用</span><{/if}></td>
+              <td><a href="javascript:void(0)" class="open_dialog" data-title="<{$l.username}>" data-url="<{url c=adminRole a=editUser id=$l.id}>" data-type="view">编辑</a> <{checkRight c=adminRole a=delUser}>
+                <{if $l.gid != 1}><a href="javascript:void(0)" class="delete" data-url="<{url c=adminRole a=delUser id=$l.id}>" >删除</a><{/if}>
+                <{/checkRight}> </td>
+            </tr>
+            <{/foreach}>
+            </tbody>
+            
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /span -->
+    </div>
+    <!-- /row -->
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

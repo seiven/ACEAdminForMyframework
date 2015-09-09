@@ -1,0 +1,40 @@
+
+<div class="page-header">
+  <h1> 权限资源 <small> <i class="icon-double-angle-right"> &nbsp;</i> <{checkRight c=adminRole a=addUser}> <a data-title="添加资源" data-url="<{url c=adminRole a=addRights}>" data-type="form" href="javascript:void(0)" class="open_dialog">添加资源</a> <{/checkRight}> </small> </h1>
+</div>
+<!-- /.page-header -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-responsive">
+          <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>方法</th>
+              </tr>
+            </thead>
+            <tbody>
+            <{foreach from=$list item=l}>
+            <tr>
+              <td><{$l.name}></td>
+              <td><a href="javascript:void(0)" class="open_dialog"  data-type="form" data-url="<{url c=adminRole a=editRights id=$l.id}>" data-title="编辑权限资源">编辑</a> <{checkRight c=adminRole a=delRights}> <a href="javascript:void(0)" class="delete" data-url="<{url c=adminRole a=delRights id=$l.id}>" data-message="您确定要删除吗?">删除</a> <{/checkRight}> </td>
+            </tr>
+            <{/foreach}>
+            </tbody>
+            
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /span -->
+    </div>
+    <!-- /row -->
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+<div class="page"><{$page}></div>

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <div class="error-container">
+      <div class="well">
+        <h1 class="grey lighter smaller"> <span class="blue bigger-125"> </span> <{$title}></h1>
+        <hr />
+        <div>
+          <h4 class="lighter smaller">以下信息可能对您有帮助:</h4>
+          <ul class="list-unstyled spaced inline bigger-110 margin-15">
+            <{if is_array($message)}>
+            <{foreach from=$message item=item}>
+            <li><i class="icon-hand-right blue"></i> <{$item}></li>
+            <{/foreach}>
+            <{else}>
+            <li><i class="icon-hand-right blue"></i> <{$message}></li>
+            <{/if}>
+          </ul>
+        </div>
+        <hr />
+        <div class="space"></div>
+        <div class="center"> 
+		<{if is_array($message)}>
+            <{foreach from=$message item=item}>
+            <li><i class="icon-hand-right blue"></i> <{$item}></li>
+            <{/foreach}>
+            <{else}>
+            <li><i class="icon-hand-right blue"></i> <{$message}></li>
+            <{/if}>
+		<a href="#" class="btn btn-link"> Go Back </a>  </div>
+      </div>
+    </div>
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

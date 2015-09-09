@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1> 角色 <small> <i class="icon-double-angle-right"> &nbsp;</i> <{checkRight c=adminRole a=addRole}> <a href="<{url c=adminRole a=addRole}>">添加角色</a> <{/checkRight}> </small> </h1>
+</div>
+<!-- /.page-header -->
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-responsive">
+          <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>角色</th>
+                <th>人数</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            <{foreach from=$list item=l}>
+            <tr id="<{$l.id}>" parent="<{$l.parent_id}>">
+              <td class="switch" style='padding-left:<{$l.floor*25+20}>px'><a onClick="show_ca('<{$l.parent_id}>','<{$l.id}>')"> <span id="hava_show" style="margin:0 5px 0 10px"> <img class="operator tree-icon-minus" src="<{$staticUrl}>/static/img/menu_minus.gif"/> </span> </a> <{if $l.floor == 0}> <span style="font-weight:bold; "><{$l.name}></span> <{else}><{$l.gname}>
+                <{/if}></td>
+              <td><{$l.hasNum}></td>
+              <td><{if $l.gid != $smarty.session.user.groupData.gid}><a href="<{url c=adminRole a=editRole id=$l.gid}>">编辑</a><{/if}> 
+                <{if $l.gid != $smarty.session.user.groupData.gid}>
+                <{checkRight c=adminRole a=delRole}>
+                <{if $l.gid == 1}><{else}><a  class='delete' href="javascript:void(0)" data-message="确定删除该角色? 删除后改组成员将无法登陆" data-url="<{url c=adminRole a=delRole id=$l.gid}>" >删除</a><{/if}>
+                <{/checkRight}>
+                <{/if}> </td>
+            </tr>
+            <{/foreach}>
+            </tbody>
+            
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /span -->
+    </div>
+    <!-- /row -->
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
