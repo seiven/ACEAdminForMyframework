@@ -365,10 +365,8 @@ class adminRole extends AdminController
      */
     public function Action_rightList()
     {
-        $list = CModel::factory('adminRightsModel')->findAll()->asArray();
-        
-        $this->assign('list', $list);
-        $this->display('adminRole/rightList');
+        $where['page'] = $this->Args('page','int');
+        $this->displayList('adminRightsModel', $where);
     }
 
     /**
@@ -400,7 +398,7 @@ class adminRole extends AdminController
         
         $this->assign('controllerList', $controllerList);
         $this->layout = null;
-        $this->display('adminRole/addRights');
+        $this->display();
     }
 
     /**

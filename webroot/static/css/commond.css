@@ -1,2 +1,27 @@
 /* bootbox dialog css */
 
+.page {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}.page a {
+  border-radius: 26px;
+  background-color: #FFFFFF;
+  display: inline-block;
+  border: solid 1px #45ABFA;
+  height: 24px;
+  padding: 0 9px;
+  text-decoration: none;
+  color: #45ABFA;
+  margin: 0 3px 0 3px;
+  line-height: 24px;
+}#PageOn,.page a:hover {
+  border-radius: 26px;
+  background-color: #45ABFA;
+  border: solid 1px #45ABFA;
+  display: inline-block;
+  height: 24px;
+  padding: 0 9px;
+  color: #ffffff;
+}

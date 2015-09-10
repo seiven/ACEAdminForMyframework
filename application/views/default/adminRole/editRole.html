@@ -16,7 +16,6 @@ table{font-size:12px; color:#333333;font-family:"微软雅黑"}
 .setRightArr li {float: left;width: 210px;margin-right: 5px;height: 28px;line-height: 28px;margin-left: 35px;}
 .setRightArr li input{position:relative; top:2px}
 .rightAreaT a{font-weight:normal; color:#333333; font-size:12px; text-decoration:none}
-select{font-family:"微软雅黑"; height:28px; border-top-left-radius:4px ; border-bottom-left-radius:4px ; border:solid 1px #CCCCCC; position:relative; left:-2px; padding-left:5px}
 </style>
 <div class="table-list-action"> <a href="<{url c=adminRole a=index}>">返回列表</a> </div>
 <div style="border-bottom:dotted 1px #CCCCCC; margin-top:10px"></div>
@@ -26,24 +25,17 @@ select{font-family:"微软雅黑"; height:28px; border-top-left-radius:4px ; bor
       <tbody>
         <tr>
           <th width="" style=" width:120px">角色所属组：</th>
-          <td width=""><select name="parent_id">
+          <td width=""><select name="parent_id" class="chosen-select">
               <{if $smarty.session.user.groupData.gid == 1}>
               <option value="0">顶级组</option>
               <{/if}> <{foreach from=$list item=cateTree}>
-              <option value="<{$cateTree.gid}>"><{$cateTree.gname}></option>
+              <option value="<{$cateTree.gid}>" <{if $cateTree.gid == $data.parent_id}>selected<{/if}>><{$cateTree.gname}></option>
               <{/foreach}>
-            </select>
-            &nbsp;拥有"角色控制权限"的角色,可以将自身拥有的权限分配给自己设定的子角色组</td>
+            </select></td>
         </tr>
         <tr>
           <th width="" style=" width:120px">角色名称：</th>
           <td width=""><{$data.gname}></td>
-        </tr>
-        <tr style="display:none">
-          <th>相关产品：
-            <input type="checkbox" style="position:absolute; margin-left:28px" />
-            <span style="position:absolute; margin-left:45px; font-weight:normal; margin-top:1px">全部产品</span> </th>
-          <td width=""></td>
         </tr>
         <tr>
           <th valign="top" style="padding-top:15px" width="">资源分配：</th>
@@ -87,3 +79,13 @@ $(function(){
 	});
 })
 </script>
+<script type="text/javascript">
+	$(".chosen-select").chosen();
+	$('.chosen-container').each(function() {
+		$(this).find('a:first-child').css('width', '210px');
+		$(this).find('.chosen-drop').css('width', '210px');
+		$(this).find('.chosen-search input').css('width', '200px');
+	});
+</script>
+
+

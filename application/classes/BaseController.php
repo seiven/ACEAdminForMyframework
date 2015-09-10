@@ -48,4 +48,28 @@ class BaseController extends CController
         $this->display('alert/redirect');
         exit();
     }
+
+    protected function displayList($model, $where)
+    {
+        // 用户列表
+        $list = CModel::factory($model)->getList($where);
+        $this->assign('list', $list);
+        
+        // 分页
+        $count = CModel::factory($model)->getCount($where);
+        if (! empty($list)) {
+            $pageObject = new Pagination($count, CModel::factory($model)->pageRows);
+            $pagestr = $pageObject->fpage(array(
+                3,
+                4,
+                5,
+                6,
+                7
+            ));
+            $this->assign('page', $pagestr);
+        }
+        $this->assign('count', $count);
+        $this->assign('where', $where);
+        $this->display();
+    }
 }
