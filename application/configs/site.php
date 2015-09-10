@@ -14,9 +14,4 @@ return array(
     'siteDescription' => 'desction',
     
     'staticUrl' => 'http://ace.admin/',
-    
-    'socketHost' => '127.0.0.1:8888',
-    
-    'openSocket' => FALSE,
-    'platform' => 'iossdk'
 );

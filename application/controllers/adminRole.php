@@ -22,6 +22,30 @@ class adminRole extends AdminController
         $this->assign('staticUrl', $staticUrl);
         $this->display();
     }
+    /**
+     * 修改自己的密码
+     */
+    public function Action_changePassword()
+    {
+    	$this->layout = null;
+    	$user = CSession::get('user');
+    	if ($_POST){
+    		$addData['salt'] = rand(100000, 999999);
+    		$addData['password'] = md5(md5($this->Args('password')) . $addData['salt']);
+    		$status = CModel::factory('adminUserModel')->update($addData, array(
+    				'id' => $user['id']
+    		));
+    		$errorMessage = '密码修改成,请重新登录!';
+    		if (false == $status) {
+    			$errorMessage = CDatabase::getDatabase()->errorInfo();
+    			$errorMessage = isset($errorMessage[2]) ? $errorMessage[2] : '';
+    		}
+    		$this->assignAjax('redirect_url', $this->createUrl('logout', 'base'));
+    		$this->displayAjax($status, $errorMessage);
+    	}
+    	$this->assign('user',$user);
+    	$this->display();
+    }
 
     /**
      * 添加角色
@@ -105,7 +129,6 @@ class adminRole extends AdminController
             $status = CModel::factory('adminRoleModel')->update($addData, array(
                 'gid' => $id
             ));
-            Cache::getInstance()->del('userGroupList');
             
             if (false == $status) {
                 $errorMessage = CDatabase::getDatabase()->errorInfo();
@@ -294,7 +317,8 @@ class adminRole extends AdminController
             if (! empty($emailExist) && $emailExist['id'] != $id) {
                 $this->displayAjax(false, '该邮箱已被使用');
             }
-            
+            // 账户名不能修改
+            unset($addData['username']);
             $status = CModel::factory('adminUserModel')->update($addData, array(
                 'id' => $id
             ));
@@ -361,9 +385,7 @@ class adminRole extends AdminController
             
             // 转成字符串
             $where['content'] = implode(',', $actionList);
-            
             $status = CModel::factory('adminRightsModel')->add($where);
-            Cache::getInstance()->del('rightsList');
             
             $errorMessage = '权限资源添加成功';
             if (false == $status) {
@@ -402,7 +424,6 @@ class adminRole extends AdminController
             $status = CModel::factory('adminRightsModel')->update($data, array(
                 'id' => $id
             ));
-            Cache::getInstance()->del('rightsList');
             $errorMessage = '权限资源编辑成功';
             if (false == $status) {
                 $errorMessage = CDatabase::getDatabase()->errorInfo();
@@ -429,7 +450,6 @@ class adminRole extends AdminController
         $status = CModel::factory('adminRightsModel')->delete(array(
             'id' => $id
         ));
-        Cache::getInstance()->del('rightsList');
         
         if (false == $status) {
             $errorMessage = CDatabase::getDatabase()->errorInfo();
@@ -438,6 +458,19 @@ class adminRole extends AdminController
         $this->displayAjax($status, $errorMessage);
     }
 
+    /**
+     * 获取方法列表
+     */
+    public function Action_getActionList() {
+    	$controllerName = $this->Args ( 'controller' );
+    
+    	$list = $this->_getActionList ( $controllerName );
+    
+    	echo json_encode ( array (
+    			'status' => true,
+    			'list' => $list
+    	) );
+    }
     /**
      * 获取控制器列表
      */

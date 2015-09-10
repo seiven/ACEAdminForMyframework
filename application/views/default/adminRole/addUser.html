@@ -6,7 +6,7 @@
 				<label class="col-sm-3 control-label no-padding-right"
 					for="form-field-1">管理角色组</label>
 				<div class="col-sm-9">
-					<select class="width-80 chosen-select" name="groupId" data-placeholder="Choose a Country..."> <{foreach
+					<select class="width-80 chosen-select" name="groupId"> <{foreach
 						from=$group item=g}>
 						<option value="<{$g.gid}>"><{$g.gname}></option> <{/foreach}>
 					</select>
@@ -90,8 +90,8 @@
 <script type="text/javascript">
 $(".chosen-select").chosen();
 $('.chosen-container').each(function() {
-	$(this).find('a:first-child').css('width', '210px');
-	$(this).find('.chosen-drop').css('width', '210px');
-	$(this).find('.chosen-search input').css('width', '200px');
+	$(this).find('a:first-child').css('width', '170px');
+	$(this).find('.chosen-drop').css('width', '170px');
+	//$(this).find('.chosen-search input').css('width', '160px');
 });
 </script>

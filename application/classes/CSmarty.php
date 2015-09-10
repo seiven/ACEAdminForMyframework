@@ -68,12 +68,11 @@ class CSmarty
         $viewObject->assign('ip', CRequest::getIp());
         $viewObject->assign('module', CRequest::getModule());
         $viewObject->assign('time', time());
-        $viewObject->assign('socketHost', CConfig::getInstance('site')->load('socketHost'));
-        $viewObject->assign('openSocket', CConfig::getInstance('site')->load('openSocket'));
         $viewObject->assign('sessionID', session_id());
         $viewObject->assign('path', CRequest::getPath());
         $viewObject->assign('staticUrl', CConfig::getInstance('site')->load('staticUrl'));
         $viewObject->assign('uploadStaticUrl', CConfig::getInstance('site')->load('uploadStaticUrl'));
+        $viewObject->assign('siteName',CConfig::getInstance('site')->load('siteName'));
     }
 
     /**

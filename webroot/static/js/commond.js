@@ -106,10 +106,23 @@ var s = {
 			success : function(json) {
 				if (json.status == true) {
 					// 添加成功
-					bootbox.alert(json.message, function(result) {
-						bootbox.hideAll();
-						location.reload();
-					});
+					if(json.message == null){
+						if (json.redirect_url) {
+							top.window.location.href = json.redirect_url;
+						} else {
+							bootbox.hideAll();
+							location.reload();
+						}
+					}else{
+						bootbox.alert(json.message, function(result) {
+							if (json.redirect_url) {
+								top.window.location.href = json.redirect_url;
+							} else {
+								bootbox.hideAll();
+								location.reload();
+							}
+						});
+					}
 				} else {
 					// 失败
 					bootbox.alert(json.message);
